@@ -8,6 +8,7 @@ const bcryptSalt = 10;
 
 // Passport
 const passport = require('passport');
+const jwt = require('jsonwebtoken')
 
 const controller = {
   
@@ -95,63 +96,31 @@ const controller = {
 
   },
 
-  login: async (req, res) => {
+  login: async (req, res, next) => {
     
-    // Recoger parámetros por post
-    const email = req.body.email;
-    const password = req.body.password;
-
-    try{
-      const validate_email = !validator.isEmpty(email);
-      const validate_password = !validator.isEmpty(password);
-
-      console.log(email, password)
-
-      if(!validate_password && !validate_email){
-
-        return res
-          .status(404)
-          .send({
-            status: 'error',
-            message: 'Introduce correo y contraseña'
-          })
+    passport.authenticate('login', (err, user, info) => {
+      if(err){
+          res.status(500).send({ errorMessage: 'Ha ocurrido un error durante la autenticación' })
+          return
       }
-        
-       User.findOne({email: email})
-        .then(results => {
-          if(!results){
-            return res
-            .status(400)
-            .send({
-              status: 'error',
-              message: 'El usuario no existe'
-            })
-          }else{
-            bcrypt.compare(password, results.password)
-              .then((resultFromBcrypt) => {
-                if(resultFromBcrypt){
-                  return res
-                    .status(200)
-                    .send({
-                      status: 'success',
-                      user: results
-                    })        
-                }else{
-                  return res
-                  .status(404)
-                  .send({
-                    status: 'error',
-                    message: 'La contraseña es incorrecta'
-                  })
-                }
-              })
+      if(!user){
+          res.send(info)
+          return
+      }
+      req.login(
+          user,
+          { session: false },
+          (error) => {
+              if(error){
+                  res.send({ errorMessage: 'Ha ocurrido un error durante la autenticaicón' })
+                  return next(error)
+              }
+              const body = { _id: user._id, email: user.email }
+              const token = jwt.sign({ user: body }, process.env.JWT_SECRET, { expiresIn: 86400 })
+              return res.send({ user, token, message: info.message })
           }
-        })
-
-    }catch(err){
-      console.log(err);
-    }
-    
+      )
+  })(req, res, next)
   },
 
   getAllUsers: async (req, res) => {
