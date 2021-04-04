@@ -71,7 +71,39 @@ const controller = {
                 status: 'success',
                 newClientsArr
             })
+    },
+
+    getClient: async (req, res) => {
+    // Recoger el id de la url
+    const clientId = req.params.id;
+
+    // Comprobar que existe
+    if(!clientId || clientId === null){
+      return res.status(400).send({
+        status: 'error',
+        message: 'Se necesita introducir un identificador para buscar al cliente en la base de datos'
+      })
     }
+    // Buscar el cliente
+    await Client.findById(clientId, (err, client) => {
+      if(err || !client){
+        return res
+          .status(500)
+          .send({
+            status: 'error',
+            message: 'El cliente no existe o no se ha podido conectar con la base de datos'
+          })
+      }
+
+      // Devolverlo en json
+       return res
+        .status(200)
+        .send({
+          status: 'success',
+          client: client
+        });
+    })
+  }
 
 }
 
