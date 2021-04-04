@@ -26,6 +26,7 @@ app.use(cors())
 // --- PASSPORT CONFIG ---
 require('./configs/passport.config')
 app.use(passport.initialize())
+app.use(passport.session())
 
 // --- ROUTES ---
 const index = require('./routes/index.routes')
