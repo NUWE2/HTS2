@@ -1,7 +1,9 @@
 const Client = require('../models/client.model');
-const {getHotspot} = require('../functions/getHotspot');
+const getHotspot = require('../functions/getHotspot');
 const {clientCsvToJson} = require('../controllers/database.controller');
 const addList = require("../functions/addList");
+const Pha = require('../models/pha.model');
+const { parseAsync } = require('json2csv');
 
 const controller = {
 
@@ -31,30 +33,41 @@ const controller = {
                 })
         })
     },
-    
-    saveClientsFromCSV: async(req, res) => {
-        const cliArray = await clientCsvToJson();
-        const arrayWithCli = cliArray.map((cli) => {
+    // He copiado el codigo de la funcion getHotspot
+    saveClientsFromCSV: async (req, res) => {
+        const cliArray =  await clientCsvToJson();
+
+        const newClientsArr =  cliArray.map( async client => {
+
+            client.age = Number(client.age);
+            client.latitude = Number(client.latitude);
+            client.longitude = Number(client.longitude);
             
-            cli.name = String(cli.name)
-            cli.lastname = String(cli.lastname)
-            cli.age = Number(cli.age)
-            cli.latitude = Number(cli.latitude)
-            cli.longitude = Number(cli.longitude)
 
-            //cli.hotspot_asteroids = Number(cli.Hotspot_asteroids)
-            //cli.price = Number(cli.Price)
+            const newLat0 = client.latitude - 15
+            const newLat1 = client.latitude + 15
+            const newLong0 = client.longitude - 15
+            const newLong1 = client.longitude + 15
 
-            return cli;
-        });
-        await addList('client', arrayWithCli);
-        console.log(arrayWithCli);
+            const phas = await Pha.find({ $and: [ { latitude: { $lte: newLat1} },
+            { latitude: { $gte: newLat0} },
+            { longitude: { $lte: newLong1 } },
+            { longitude: { $gte: newLong0 } } ] })
+           
+            client.hotspot_asteroids =  phas.length;
+           // console.log(client)
+            return await client;
+        })
+       
+        console.log(newClientsArr)
+       // await addList('client', newClientsArr);
+        
 
         return res
             .status(200)
             .send({
                 status: 'success',
-                arrayWithCli
+                newClientsArr
             })
     }
 
