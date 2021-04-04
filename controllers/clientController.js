@@ -103,6 +103,78 @@ const controller = {
           client: client
         });
     })
+
+  },
+
+    updateClient: async (req, res) =>{
+
+    const clientId = req.params.id;
+    const {name, lastname, age, latitude, longitude, hotspot_asteroids, price} = req.body;
+    console.log(name)
+    // Comprobar que existe 
+    if(!clientId || clientId === null){
+      return res.status(400).send({
+        status: 'error',
+        message: 'Se necesita introducir un identificador para buscar al cliente en la base de datos'
+      })
+    }
+
+    const userUpdated= await Client.findByIdAndUpdate(clientId, {$set: {
+      name: name,
+      lastname: lastname,
+      age: age,
+      latitude: latitude,
+      longitude: longitude,
+      hotspot_asteroids: hotspot_asteroids,
+      price: price
+    }})
+    if(!userUpdated || userUpdated==null){
+
+      return res.status(404).send({
+        status: "Error",
+        description: "Usuario no encontrado o no actualizado, prueba otra vez."
+      })
+    }
+
+      // Devolverlo en json
+       return res
+        .status(200)
+        .send({
+          status: 'success',
+          client: userUpdated
+        });
+    
+  },
+
+  deleteClient: async (req, res) =>{
+
+    const clientId = req.params.id;
+    // Comprobar que existe 
+    if(!clientId || clientId === null){
+      return res.status(400).send({
+        status: 'error',
+        message: 'Se necesita introducir un identificador para elimnar al cliente de la base de datos'
+      })
+    }
+
+     const userDeleted = await Client.findByIdAndDelete(clientId);
+     console.log(userDeleted)
+    if(!userDeleted || userDeleted==null){
+
+      return res.status(404).send({
+        status: "Error",
+        message: "Usuario no eliminado, prueba otra vez."
+      })
+    }
+
+      // Devolverlo en json
+       return res
+        .status(200)
+        .send({
+          status: 'success',
+          userDeleted: userDeleted
+        });
+    
   }
 
 }

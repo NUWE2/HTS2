@@ -13,8 +13,8 @@ const protectedRoute = passport.authenticate('jwt', { session: false })
 router.get('/clients', protectedRoute, clientRoutes.getAllClients);
 router.get('/save-clients-from-csv', protectedRoute, clientRoutes.saveClientsFromCSV);
 router.get('/clients/:id', protectedRoute,  clientRoutes.getClient);
-// router.put('/clients/:id', update);
-// router.delete('/clients/:id', delete);
+router.put('/clients/:id', protectedRoute,clientRoutes.updateClient);
+router.delete('/clients/:id', protectedRoute,clientRoutes.deleteClient);
 // router.get('/clients/search/:search', search)
 
 module.exports = router;
