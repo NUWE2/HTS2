@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 3000
 // --- MIDDLEWARE SETUP
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
 
 // --- CORS MIDDLEWARE ---
 app.use(cors())
@@ -24,7 +23,13 @@ require('./configs/passport.config')
 
 // --- ROUTES ---
 const index = require('./routes/index.routes')
+const phaRoutes = require('./routes/pha.routes');
+const clientRoutes = require('./routes/client.routes');
+
+// Rutas
 app.use('/', index)
+app.use('/api', phaRoutes);
+app.use('/', clientRoutes);
 
 
 // --- ERROR ROUTES ---
