@@ -5,7 +5,9 @@ const Asteroid = require('../models/pha.model');
 const CSVToJSON = require('csvtojson');
 const JSONToCSV = require('json2csv').parse;
 const FileSystem = require('fs');
-
+const {body2latlong} = require("keplerjs");
+const {phaCsvToJson}= require("./database.controller")
+const addList = require("../functions/addList")
 const controller = {
 
   save: (req, res) => {
@@ -86,14 +88,10 @@ const controller = {
     }
   },
 
-  saveAsteroidsFromCSV: (req, res) => {
-
-    const orbitalParameters = '../assets/OrbitalParameters_PHAs.csv'
-    CSVToJSON()
-      .fromFile(orbitalParameters)
-      .then((orbitalParameters) => {
-        orbitalParameters.map((op)=> {
-          op.full_name = String(op.full_name)
+  saveAsteroidsFromCSV: async (req, res) => {
+    const phaArray = await phaCsvToJson();
+   const arrayWithPos =  phaArray.map((op)=> {
+          const position = body2latlong(op);
           op.a = Number(op.a);
           op.e = Number(op.e);
           op.i = Number(op.i);
@@ -101,41 +99,19 @@ const controller = {
           op.w = Number(op.w);
           op.ma = Number(op.ma);
 
-          const asteroid = new Asteroid();
-
-          asteroid.full_name = op.full_name;
-          asteroid.a = op.a;
-          asteroid.e = op.e;
-          asteroid.i = op.i;
-          asteroid.om = op.om;
-          asteroid.w = op.w;
-          asteroid.ma = op.ma;
-
-          Asteroid.findOne({full_name: asteroid.full_name})
-            .then(result => {
-              if(!result){
-                asteroid.save();
-              }
-            })
-            .catch(err => {
-              return res
-                .status(404)
-                .send({
-                  status: 'error',
-                  mesagge: 'Ya existe un asteroide con ese nombre', err
-                })
-            })
+          op.latitude = position.lat;
+          op.longitude = position.long;
+          return op;
         });
+       await addList("pha",arrayWithPos);
 
         return res
           .status(200)
           .send({
             status: 'success',
-            asteroids: orbitalParameters
+           arrayWithPos
           })
-      })
 
-    
   },
 
   getAsteroids: (req, res) => {
