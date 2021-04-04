@@ -18,7 +18,7 @@ const clientSchema = new Schema (
         longitude: {
             type: Number,
         },
-        hostpot_asteroids:{
+        hotspot_asteroids:{
             type: Number,
         },
         price:{
