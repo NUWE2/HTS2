@@ -49,7 +49,7 @@ passport.use(new GitHubStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: 'https://hts2.herokuapp.com/user/oauth2/github/callback'
-}, (accesToken, refreshToken, profil, cb) => {
+}, (accesToken, refreshToken, profile, cb) => {
     User.find({ githubId: profile.id }, (err, user) => {
         return cb(err, user)
     })
