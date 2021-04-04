@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 3000
 // --- MIDDLEWARE SETUP
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
 
 // --- CORS MIDDLEWARE ---
 app.use(cors())
