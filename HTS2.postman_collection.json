@@ -1,0 +1,527 @@
+{
+	"info": {
+		"_postman_id": "3a8b796b-f863-4742-bd33-dafd931dfdbc",
+		"name": "HTS2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CLIENT",
+			"item": [
+				{
+					"name": "CLIENT - GET - all clients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/client/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT - GET - save clients from csv",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/client/save-clients-from-csv",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"save-clients-from-csv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT - GET - get one client",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/client/clients/606a1a2e85ae1f181496de7d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"clients",
+								"606a1a2e85ae1f181496de7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT - PUT - update client",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"latitude\": 14\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/client/clients/606a1a2e85ae1f181496de7d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"clients",
+								"606a1a2e85ae1f181496de7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CLIENT - DELETE - delete client",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/client/clients/606a1a2e85ae1f181496de7d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"client",
+								"clients",
+								"606a1a2e85ae1f181496de7d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PHA",
+			"item": [
+				{
+					"name": "PHA - GET - save from csv",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/asteroids/save-asteroids-from-csv",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asteroids",
+								"save-asteroids-from-csv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PHA - POST - save asteroid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"mark\",\n    \"a\": \"1\",\n    \"e\": \"1\",\n    \"i\": \"1\",\n    \"om\": \"1\",\n    \"w\": \"1\",\n    \"ma\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/asteroids/save",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asteroids",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PHA - GET - get all asteroids",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/asteroids",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asteroids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PHA - GET - get one asteroid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/asteroids/606a33b2eebe1430dcdf5a32",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asteroids",
+								"606a33b2eebe1430dcdf5a32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PHA - PUT - update pha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwNjhhMmQ4ZjYwYzY1MWZhYjlkMzIxYyIsImVtYWlsIjoibWFya0BtYXJrLmNvbSJ9LCJpYXQiOjE2MTc1NjY5OTIsImV4cCI6MTYxNzY1MzM5Mn0.j5gOCs1cxPGNCT-A_BUFbZolttgm4jpQZZfB9Io6-qQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"mark0\",\n    \"a\": \"1\",\n    \"e\": \"1\",\n    \"i\": \"1\",\n    \"om\": \"1\",\n    \"w\": \"1\",\n    \"ma\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/asteroids/606a31054234413f2e283a75",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asteroids",
+								"606a31054234413f2e283a75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PHA - DELETE - delete pha",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/asteroids/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"asteroids",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "USER - POST - SIGNUP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test1@test1.com\",\n    \"password\": \"12345678\",\n    \"username\": \"test1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - POST - LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mark@mark.com\",\n    \"password\": \"mark\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - GET - get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - GET - get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/6068a2d8f60c651fab9d321c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"6068a2d8f60c651fab9d321c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - PUT - update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pepe@pepe.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/606a345e8854ac44f197bd78",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"606a345e8854ac44f197bd78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - DELETE - delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/606a345e8854ac44f197bd78",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"606a345e8854ac44f197bd78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - GET - github oauth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/user/oauth2/github",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"oauth2",
+								"github"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - GET - github oauth callback",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/user/oauth2/github/callback",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"oauth2",
+								"github",
+								"callback"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
