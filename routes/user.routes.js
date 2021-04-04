@@ -5,6 +5,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 
 // Rutas
 router.post('/signup', authController.signup );
