@@ -1,14 +1,22 @@
-import { MongoMemoryServer } from 'mongodb-memory-server';
+const mongoose = require('mongoose')
+const  MongoMemoryServer = require('mongodb-memory-server-core').MongoMemoryServer
 
-const mongod = new MongoMemoryServer();
+const mongoServer = new MongoMemoryServer()
 
-const uri = await mongod.getUri();
-const port = await mongod.getPort();
-const dbPath = await mongod.getDbPath();
-const dbName = await mongod.getDbName();
+mongoServer.getUri().then(mongoUri => {
+    const mongooseOpts = {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    }
+    mongoose.connect(mongoUri, mongooseOpts)
+    mongoose.connection.on('error', e => {
+        console.error(e)
+        mongoose.connect(mongoUri, mongooseOpts)
+    })
+    mongoose.connection.once('open', () => {
+        console.log('Conectado a Mock! ', mongoUri)
+    })
+})
 
-mongod.getInstanceInfo()
-
-await mongod.stop();
-
-mongod.getInstanceInfo();

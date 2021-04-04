@@ -7,6 +7,9 @@ require('dotenv').config()
 // --- DATABASE CONFIG ---
 require('./configs/db.config')
 
+// --- MOCK CONFIG ---
+// require('./configs/mongodbmock.config')
+
 // --- PORT ---
 const PORT = process.env.PORT || 3000
 
