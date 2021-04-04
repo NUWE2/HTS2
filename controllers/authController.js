@@ -2,7 +2,6 @@
 
 const validator = require('validator');
 const User = require('../models/user.model');
-const Client = require('../models/client.model');
 // Bcrypt para encriptar la contraseña
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;

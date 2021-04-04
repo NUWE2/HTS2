@@ -30,11 +30,14 @@ require('./configs/passport.config')
 const index = require('./routes/index.routes')
 const phaRoutes = require('./routes/pha.routes');
 const clientRoutes = require('./routes/client.routes');
+const userRoutes = require('./routes/user.routes');
+
 
 // Rutas
 app.use('/', index)
 app.use('/api', phaRoutes);
-app.use('/', clientRoutes);
+app.use('/client', clientRoutes);
+app.use('/', userRoutes);
 
 
 // --- ERROR ROUTES ---
