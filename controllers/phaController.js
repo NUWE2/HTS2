@@ -98,6 +98,9 @@ const controller = {
           op.om = Number(op.om);
           op.w = Number(op.w);
           op.ma = Number(op.ma);
+          
+          position.lat %= 90;
+          position.long %= 180;
 
           op.latitude = position.lat;
           op.longitude = position.long;

@@ -1,5 +1,6 @@
 const Client = require('../models/client.model');
-const {getHotspot} = require('../functions/getHotspot');
+const getHotspot = require('../functions/getHotspot');
+const getPrice = require('../functions/getPrice');
 const {clientCsvToJson} = require('../controllers/database.controller');
 const addList = require("../functions/addList");
 
@@ -36,25 +37,23 @@ const controller = {
         const cliArray = await clientCsvToJson();
         const arrayWithCli = cliArray.map((cli) => {
             
-            cli.name = String(cli.name)
-            cli.lastname = String(cli.lastname)
-            cli.age = Number(cli.age)
-            cli.latitude = Number(cli.latitude)
-            cli.longitude = Number(cli.longitude)
-
-            //cli.hotspot_asteroids = Number(cli.Hotspot_asteroids)
-            //cli.price = Number(cli.Price)
-
-            return cli;
+            return getHotspot(cli);
         });
-        await addList('client', arrayWithCli);
-        console.log(arrayWithCli);
+
+        
+        await addList('client', arrayWithHot);
+ 
+        //const arrayWithPrice = await getPrice(arrayWithHot);
+
+        //await addList('client', arrayWithPrice);
+
+        //console.log(arrayWithHot);
 
         return res
             .status(200)
             .send({
                 status: 'success',
-                arrayWithCli
+                arrayWithHot
             })
     }
 
