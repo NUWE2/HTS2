@@ -11,6 +11,8 @@ const getHotspot = async (clients) => {
         { longitude: { $lte: newLong0 } },
         { longitude: { $gte: newLong1 } } ] })
         client.hotspot_asteroids = phas.length
+        return client
     })
+    return newClientsArr
 }
 module.exports = getHotspot
