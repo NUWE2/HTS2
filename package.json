@@ -4,8 +4,13 @@
   "description": "",
   "main": "App.js",
   "scripts": {
+<<<<<<< HEAD
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon App.js"
+=======
     "start": "nodemon App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> main
   },
   "repository": {
     "type": "git",
