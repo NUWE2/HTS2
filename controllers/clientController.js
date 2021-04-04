@@ -144,6 +144,37 @@ const controller = {
           client: userUpdated
         });
     
+  },
+
+  deleteClient: async (req, res) =>{
+
+    const clientId = req.params.id;
+    // Comprobar que existe 
+    if(!clientId || clientId === null){
+      return res.status(400).send({
+        status: 'error',
+        message: 'Se necesita introducir un identificador para elimnar al cliente de la base de datos'
+      })
+    }
+
+     const userDeleted = await Client.findByIdAndDelete(clientId);
+     console.log(userDeleted)
+    if(!userDeleted || userDeleted==null){
+
+      return res.status(404).send({
+        status: "Error",
+        message: "Usuario no eliminado, prueba otra vez."
+      })
+    }
+
+      // Devolverlo en json
+       return res
+        .status(200)
+        .send({
+          status: 'success',
+          userDeleted: userDeleted
+        });
+    
   }
 
 }
