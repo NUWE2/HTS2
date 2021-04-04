@@ -15,7 +15,7 @@ router.put('/users/:id', authController.update);
 router.delete('/users/:id', authController.delete);
 router.get('/users/search/:search', authController.search)
 router.get('/user/oauth2/github', passport.authenticate('github'))
-router.get('/user/oauth2/github',
+router.get('/user/oauth2/github/callback',
     passport.authenticate('github', { failureRedirect: '/login'}),
     (req, res, next) => {
         res.status(200).send('logged in with github')
