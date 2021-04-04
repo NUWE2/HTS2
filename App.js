@@ -4,6 +4,7 @@ const path = require('path')
 const cors = require('cors')
 const morgan = require('morgan')
 require('dotenv').config()
+const passport = require('passport')
 
 // --- DATABASE CONFIG ---
 require('./configs/db.config')
@@ -24,7 +25,7 @@ app.use(cors())
 
 // --- PASSPORT CONFIG ---
 require('./configs/passport.config')
-
+app.use(passport.initialize())
 
 // --- ROUTES ---
 const index = require('./routes/index.routes')
