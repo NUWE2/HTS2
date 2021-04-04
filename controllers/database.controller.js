@@ -7,13 +7,13 @@ const csvClientsFilePath =  "../assets/List_Of_Clients.csv"
 
 
   
-    export const phaCsvToJson = async () => {
-        return await csv().fromFile(path.join(__dirname, csvPhaFilePath))
+    const phaCsvToJson = async () => {
+        return await csvtojson().fromFile(path.join(__dirname, csvPhaFilePath))
     }
 
-   export const clientCsvToJson = async () => {
-        return await csv().fromFile(path.join(__dirname, csvClientsFilePath))
+   const clientCsvToJson = async () => {
+        return await csvtojson().fromFile(path.join(__dirname, csvClientsFilePath))
     }
 
    
-
+    module.exports = {phaCsvToJson, clientCsvToJson};

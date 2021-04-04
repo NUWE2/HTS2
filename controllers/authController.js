@@ -2,7 +2,7 @@
 
 const validator = require('validator');
 const User = require('../models/user.model');
-
+const Client = require('../models/client.model');
 // Bcrypt para encriptar la contraseña
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
@@ -12,7 +12,7 @@ const passport = require('passport');
 
 const controller = {
   
-  signup: (req, res) => {
+  signup: async (req, res) => {
     
     // Recoger parámetros por post
     const username = req.body.username;
@@ -42,7 +42,7 @@ const controller = {
         })
       }
         
-      User.findOne({'email': email}, (err, foundEmail) => {
+       User.findOne({'email': email}, (err, foundEmail) => {
         if(err){
           return res
           .status(500)
@@ -96,7 +96,7 @@ const controller = {
 
   },
 
-  login: (req, res) => {
+  login: async (req, res) => {
     
     // Recoger parámetros por post
     const email = req.body.email;
@@ -118,7 +118,7 @@ const controller = {
           })
       }
         
-      User.findOne({email: email})
+       User.findOne({email: email})
         .then(results => {
           if(!results){
             return res
@@ -155,9 +155,9 @@ const controller = {
     
   },
 
-  getAllUsers: (req, res) => {
+  getAllUsers: async (req, res) => {
     // Find 
-    User.find({}).exec((err, users) => {
+     User.find({}).exec((err, users) => {
 
       if(err){
         return res
@@ -186,7 +186,7 @@ const controller = {
     })
   },
 
-  getUser: (req, res) => {
+  getUser: async (req, res) => {
     // Recoger el id de la url
     const userId = req.params.id;
 
@@ -218,7 +218,7 @@ const controller = {
     })
   },
 
-  update: (req, res) => {
+  update: async (req, res) => {
     // Recoger el id del artículo por la URL
     const userId = req.params.id;
     console.log(userId);
@@ -266,12 +266,12 @@ const controller = {
     }
   },
 
-  delete: (req, res) => {
+  delete: async (req, res) => {
      // Recoger el ID de la URL 
     const userId = req.params.id;
 
     // Find and Delete
-    User.findOneAndDelete({_id: userId}, (err, userRemoved) => {
+     User.findOneAndDelete({_id: userId}, (err, userRemoved) => {
       if(err){
         return res
           .status(500)
@@ -296,12 +296,12 @@ const controller = {
     })
   },
 
-  search: (req, res) => {
+  search: async (req, res) => {
      // Sacar el string
     const searchString = req.params.search;
 
     // Find or
-    User.find({ "$or": [
+     User.find({ "$or": [
       {"username": {"$regex": searchString, "$options": "i"}},
       {"email": {"$regex": searchString, "$options": "i"}},
      ]})

@@ -2,6 +2,7 @@ const app = require('express')()
 const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
+const morgan = require('morgan')
 require('dotenv').config()
 
 // --- DATABASE CONFIG ---
@@ -11,6 +12,7 @@ require('./configs/db.config')
 const PORT = process.env.PORT || 3000
 
 // --- MIDDLEWARE SETUP
+app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -36,12 +38,13 @@ app.use('/', clientRoutes);
 app.use((req, res, next) => {
     res.status(404).send('Page not found')
 })
+/*
 app.use((err, req, res, next) => {
     if(!res.headersSent) {
         res.status(500).send('Error')
     }
 })
-
+*/
 // --- SERVER LISTEN --- 
 app.listen(PORT, () => {
     console.log(`Connected to port ${PORT}`)
