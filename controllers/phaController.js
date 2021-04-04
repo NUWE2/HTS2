@@ -52,7 +52,7 @@ const controller = {
         // Devolver una respuesta
 
         // Agregar nuestro cometa a la base de datos CSV
-        CSVToJSON().fromFile('./data/OrbitalParameters_PHAs.csv')
+        CSVToJSON().fromFile('../assets/OrbitalParameters_PHAs.csv')
           .then(orbitalParameters => {
             orbitalParameters.push({
               "full_name": asteroid.full_name,
@@ -64,7 +64,7 @@ const controller = {
               "ma": asteroid.ma,
             });
             const csv = JSONToCSV(orbitalParameters, {fields: ["full_name", "a", "e", "i", "om", "w", "ma"]});
-            FileSystem.writeFileSync('./data/OrbitalParameters_PHAs.csv', csv);
+            FileSystem.writeFileSync('../assets/OrbitalParameters_PHAs.csv', csv);
     
           })
 
@@ -88,7 +88,7 @@ const controller = {
 
   saveAsteroidsFromCSV: (req, res) => {
 
-    const orbitalParameters = './data/OrbitalParameters_PHAs.csv'
+    const orbitalParameters = '../assets/OrbitalParameters_PHAs.csv'
     CSVToJSON()
       .fromFile(orbitalParameters)
       .then((orbitalParameters) => {
