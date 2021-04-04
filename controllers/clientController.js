@@ -37,7 +37,7 @@ const controller = {
     saveClientsFromCSV: async (req, res) => {
         const cliArray =  await clientCsvToJson();
 
-        const newClientsArr =  cliArray.map( async client => {
+        const newClientsArr = await Promise.all(cliArray.map( async client => {
 
             client.age = Number(client.age);
             client.latitude = Number(client.latitude);
@@ -50,14 +50,14 @@ const controller = {
             const newLong1 = client.longitude + 15
 
             const phas = await Pha.find({ $and: [ { latitude: { $lte: newLat1} },
-            { latitude: { $gte: newLat0} },
-            { longitude: { $lte: newLong1 } },
-            { longitude: { $gte: newLong0 } } ] })
-           
-            client.hotspot_asteroids =  phas.length;
-           // console.log(client)
-            return await client;
-        })
+                { latitude: { $gte: newLat0} },
+                { longitude: { $lte: newLong1 } },
+                { longitude: { $gte: newLong0 } } ] })
+               
+                client.hotspot_asteroids =  phas.length;
+            //console.log(client)
+            return client;
+        }))
        
         console.log(newClientsArr)
        // await addList('client', newClientsArr);
