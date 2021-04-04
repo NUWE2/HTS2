@@ -60,7 +60,7 @@ const controller = {
         }))
        
         console.log(newClientsArr)
-       // await addList('client', newClientsArr);
+       await addList('client', newClientsArr);
         
 
         return res
@@ -83,7 +83,7 @@ const controller = {
       })
     }
     // Buscar el cliente
-    Client.findById(clientId, (err, client) => {
+    await Client.findById(clientId, (err, client) => {
       if(err || !client){
         return res
           .status(500)
