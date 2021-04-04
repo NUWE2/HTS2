@@ -6,12 +6,13 @@ const getHotspot = async (clients) => {
         const newLat1 = client.latitude + 15
         const newLong0 = client.longitude - 15
         const newLong1 = client.longitude + 15
-        const phas = await Pha.find({ $and: [ { latitude: { $lte: newLat0 } },
+        const phas = Pha.find({ $and: [ { latitude: { $lte: newLat0 } },
         { latitude: { $gte: newLat1 } },
         { longitude: { $lte: newLong0 } },
         { longitude: { $gte: newLong1 } } ] })
         client.hotspot_asteroids = phas.length
-        return client
+
+        return client;
     })
     return newClientsArr
 }
