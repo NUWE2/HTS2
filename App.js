@@ -25,6 +25,12 @@ app.use(cors())
 
 // --- PASSPORT CONFIG ---
 require('./configs/passport.config')
+passport.serializeUser((user,cb) => {
+    cb(null,user)
+})
+passport.deserializeUser((obj,cb) => {
+    cb(null, obj)
+})
 app.use(passport.initialize())
 app.use(passport.session())
 
