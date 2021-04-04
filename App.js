@@ -24,7 +24,13 @@ require('./configs/passport.config')
 
 // --- ROUTES ---
 const index = require('./routes/index.routes')
+const phaRoutes = require('./routes/pha.routes');
+const clientRoutes = require('./routes/client.routes');
+
+// Rutas
 app.use('/', index)
+app.use('/api', phaRoutes);
+app.use('/', clientRoutes);
 
 
 // --- ERROR ROUTES ---

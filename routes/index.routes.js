@@ -1,14 +1,3 @@
-// Modulos
-const express = require('express');
+const router = require('express').Router()
 
-// Express
-const app = express();
-
-// Ficheros
-const phaRoutes = require('./pha.routes');
-const clientRoutes = require('./client.routes');
-
-// Rutas
-app.use('/api', phaRoutes);
-app.use('/', clientRoutes);
-
+module.exports = router
