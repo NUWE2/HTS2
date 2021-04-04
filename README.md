@@ -5,7 +5,7 @@
 ## Miguel Rincon
 ## Jonatan Romero
 
-Link to deployed app: [NUWE 2](https://https://hts2.herokuapp.com/)
+Link to deployed app: [HTS 2](https://https://hts2.herokuapp.com/)
 ## Install
 npm install
 

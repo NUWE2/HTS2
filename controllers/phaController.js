@@ -138,26 +138,12 @@ const controller = {
           })
       }
 
-      const orbitalParameters = './data/OrbitalParameters_PHAs.csv'
-      CSVToJSON()
-        .fromFile(orbitalParameters)
-        .then((orbitalParameters) => {
-          orbitalParameters.map((op)=> {
-            op.a = Number(op.a);
-            op.e = Number(op.e);
-            op.i = Number(op.i);
-            op.om = Number(op.om);
-            op.w = Number(op.w);
-            op.ma = Number(op.ma);
-          });
-
           return res
             .status(200)
             .send({
               status: 'success',
-              asteroids: orbitalParameters
+              asteroids
             })
-        })
 
     })
   },
