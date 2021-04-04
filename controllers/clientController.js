@@ -1,8 +1,9 @@
 const Client = require('../models/client.model');
 const getHotspot = require('../functions/getHotspot');
-const getPrice = require('../functions/getPrice');
 const {clientCsvToJson} = require('../controllers/database.controller');
 const addList = require("../functions/addList");
+const Pha = require('../models/pha.model');
+const { parseAsync } = require('json2csv');
 
 const controller = {
 
@@ -32,28 +33,41 @@ const controller = {
                 })
         })
     },
-    
-    saveClientsFromCSV: async(req, res) => {
-        const cliArray = await clientCsvToJson();
-        const arrayWithCli = cliArray.map((cli) => {
+    // He copiado el codigo de la funcion getHotspot
+    saveClientsFromCSV: async (req, res) => {
+        const cliArray =  await clientCsvToJson();
+
+        const newClientsArr = await Promise.all(cliArray.map( async client => {
+
+            client.age = Number(client.age);
+            client.latitude = Number(client.latitude);
+            client.longitude = Number(client.longitude);
             
-            return getHotspot(cli);
-        });
 
+            const newLat0 = client.latitude - 15
+            const newLat1 = client.latitude + 15
+            const newLong0 = client.longitude - 15
+            const newLong1 = client.longitude + 15
+
+            const phas = await Pha.find({ $and: [ { latitude: { $lte: newLat1} },
+                { latitude: { $gte: newLat0} },
+                { longitude: { $lte: newLong1 } },
+                { longitude: { $gte: newLong0 } } ] })
+               
+                client.hotspot_asteroids =  phas.length;
+            //console.log(client)
+            return client;
+        }))
+       
+        console.log(newClientsArr)
+       // await addList('client', newClientsArr);
         
-        await addList('client', arrayWithHot);
- 
-        //const arrayWithPrice = await getPrice(arrayWithHot);
-
-        //await addList('client', arrayWithPrice);
-
-        //console.log(arrayWithHot);
 
         return res
             .status(200)
             .send({
                 status: 'success',
-                arrayWithHot
+                newClientsArr
             })
     }
 
