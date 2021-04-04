@@ -1,7 +1,7 @@
 'use strict'
 
 const validator = require('validator');
-const User = require('../models/client.model');
+const User = require('../models/user.model');
 
 // Bcrypt para encriptar la contraseña
 const bcrypt = require('bcrypt');
