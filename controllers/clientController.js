@@ -1,4 +1,5 @@
 const Client = require('../models/client.model');
+const {getHotspot} = require('../functions/getHotspot');
 const {clientCsvToJson} = require('../controllers/database.controller');
 const addList = require("../functions/addList");
 
