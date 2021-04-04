@@ -1,5 +1,6 @@
 const Client = require('../models/client.model');
 const getHotspot = require('../functions/getHotspot');
+const getPrice = require('../functions/getPrice')
 const {clientCsvToJson} = require('../controllers/database.controller');
 const addList = require("../functions/addList");
 const Pha = require('../models/pha.model');
@@ -55,12 +56,13 @@ const controller = {
                 { longitude: { $gte: newLong0 } } ] })
                
                 client.hotspot_asteroids =  phas.length;
+               client.price = getPrice(client);
             //console.log(client)
             return client;
         }))
        
         console.log(newClientsArr)
-       // await addList('client', newClientsArr);
+       await addList('client', newClientsArr);
         
 
         return res
