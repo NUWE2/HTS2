@@ -7,10 +7,10 @@ require('dotenv').config()
 const passport = require('passport')
 
 // --- DATABASE CONFIG ---
-require('./configs/db.config')
+// require('./configs/db.config')
 
 // --- MOCK CONFIG ---
-// require('./configs/mongodbmock.config')
+require('./configs/mongodbmock.config')
 
 // --- PORT ---
 const PORT = process.env.PORT || 3000
